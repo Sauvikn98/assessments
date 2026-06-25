@@ -1,11 +1,3 @@
-# Multi-Service Operations Platform: Secure PKI & High-Performance Inventory Ecosystem
-
-This repository houses a modern, multi-service operations platform featuring a secure PKI Rust backend, an integrated full-stack Next.js certificate management console, and a highly optimized, fully accessible virtualized inventory dashboard. Designed for security, scale, and accessibility, each component demonstrates production-ready engineering practices.
-
-For detailed design journeys and technical implementation decisions, please refer to the comprehensive [walkthrough](file:///Users/sauviknath/.gemini/antigravity/brain/e9377c7b-25b6-45bd-a130-9aa87c6fa707/walkthrough.md) in the documentation.
-
----
-
 ## Workspace Structure
 
 The platform is organized into three isolated, self-contained project directories:
@@ -19,9 +11,17 @@ multi-service-platform/
 └── assignment3-nextjs-inventory/      # High-Performance Virtualized Dashboard (Local)
 ```
 
----
+## Running the Entire Ecosystem Simultaneously
 
-## How to Navigate and Run the Services
+A helper script `start_all.sh` is provided in the root directory. It spins up the containerized Rust backend and PostgreSQL database, and launches both Next.js frontends locally in the background.
+
+To run it:
+```bash
+chmod +x start_all.sh
+./start_all.sh
+```
+
+## Run the Service
 
 ### 1. Secure Rust PKI Backend (`assignment1-rust-backend`)
 An asynchronous Rust API (Axum) featuring a custom X.509 PEM certificate parser, native TLS (with automatic self-signed certificate generation on startup), and database persistence via SQLx and PostgreSQL.
@@ -61,7 +61,7 @@ A Next.js App Router frontend integrated with the secure TLS Rust API, featuring
   npm run test
   ```
 
-### 3. High-Performance Virtualized Dashboard (`assignment3-nextjs-inventory`)
+### 3. High-Performance Virtualized Inventory Dashboard (`assignment3-nextjs-inventory`)
 A high-performance Next.js dashboard simulating 55,000+ records in a custom-built, fully virtualized table with dynamic sorting, fuzzy filtering, and comprehensive WAI-ARIA keyboard and screen reader accessibility.
 - **Features**: 60 FPS scrolling, custom virtualizer, debounced search, pre-parsed numeric sort optimization, roving tabIndex keyboard navigation, aria-live status announcements, and Jest unit tests.
 - **Directory**: `./assignment3-nextjs-inventory/`
@@ -85,16 +85,6 @@ A high-performance Next.js dashboard simulating 55,000+ records in a custom-buil
   ```
 
 ---
-
-## Running the Entire Ecosystem Simultaneously
-
-A helper script `start_all.sh` is provided in the root directory. It spins up the containerized Rust backend and PostgreSQL database, and launches both Next.js frontends locally in the background.
-
-To run it:
-```bash
-chmod +x start_all.sh
-./start_all.sh
-```
 
 - **Rust PKI Backend (API)**: Exposed on [https://localhost:8445](https://localhost:8445)
 - **PKI Management Console (UI)**: Runs on [http://localhost:3000](http://localhost:3000)
